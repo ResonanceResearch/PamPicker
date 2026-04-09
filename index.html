@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PAM Scout</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <div class="eyebrow">GitHub Pages bioinformatics app</div>
+      <h1>PAM Scout</h1>
+      <p class="subtitle">
+        Upload annotated GenBank files, scan both strands for CRISPR-adjacent PAMs,
+        inspect gene context, and export spacer candidates for cloning or ordering.
+      </p>
+    </div>
+    <div class="hero-actions">
+      <label class="button primary upload-button">
+        <input id="fileInput" type="file" accept=".gb,.gbk,.genbank,.txt" multiple hidden />
+        Upload GenBank files
+      </label>
+      <button id="loadDemoBtn" class="button secondary">Load demo file</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="panel controls-panel">
+      <h2>Scan settings</h2>
+
+      <div class="control-group">
+        <label class="label" for="recordSelect">Sequence</label>
+        <select id="recordSelect"></select>
+      </div>
+
+      <div class="control-group motifs-box">
+        <div class="motif-line"><code>NNAGAAW</code> <span class="muted">(+ optional G at W)</span></div>
+        <div class="motif-line"><code>NNGGAA</code></div>
+      </div>
+
+      <div class="control-group checkbox-group">
+        <label><input id="allowGAtW" type="checkbox" /> Allow <code>G</code> at W in <code>NNAGAAW</code></label>
+        <label><input id="prefer21G" type="checkbox" checked /> Use 21 nt spacer when position 21 is G and position 20 is not</label>
+        <label><input id="showNumbers" type="checkbox" checked /> Show PAM numbers on map</label>
+      </div>
+
+      <div class="control-group checkbox-group two-col">
+        <label><input id="showPlus" type="checkbox" checked /> Show + strand PAMs</label>
+        <label><input id="showMinus" type="checkbox" checked /> Show − strand PAMs</label>
+        <label><input id="showPattern1" type="checkbox" checked /> Show NNAGAAW</label>
+        <label><input id="showPattern2" type="checkbox" checked /> Show NNGGAA</label>
+      </div>
+
+      <div class="control-group">
+        <label class="label" for="featureNameFilter">Feature / gene filter</label>
+        <input id="featureNameFilter" type="text" placeholder="Filter by gene, locus_tag, product..." />
+      </div>
+
+      <div class="control-group">
+        <label class="label" for="zoomRange">Genome zoom</label>
+        <input id="zoomRange" type="range" min="0.1" max="20" step="0.1" value="1.2" />
+        <div class="zoom-readout"><span id="zoomValue">1.2×</span></div>
+      </div>
+
+      <div class="button-row wrap">
+        <button id="scanBtn" class="button primary">Scan sequence</button>
+        <button id="resetViewBtn" class="button secondary">Reset view</button>
+        <button id="clearSelectionBtn" class="button ghost">Clear selected</button>
+      </div>
+
+      <div class="stats-grid" id="statsGrid"></div>
+    </aside>
+
+    <section class="main-stack">
+      <section class="panel viewer-panel">
+        <div class="section-header">
+          <div>
+            <h2>Genome map</h2>
+            <p class="muted">Drag horizontally to pan. Use the zoom slider or Ctrl/Cmd + wheel over the map.</p>
+          </div>
+          <div class="button-row wrap">
+            <button id="exportAllCsvBtn" class="button secondary">Export all CSV</button>
+            <button id="exportAllTsvBtn" class="button secondary">Export all TSV</button>
+            <button id="copySelectedBtn" class="button ghost">Copy selected spacers</button>
+            <button id="exportSelectedBtn" class="button primary">Export selected</button>
+          </div>
+        </div>
+
+        <div id="recordSummary" class="record-summary"></div>
+        <div id="viewerContainer" class="viewer-container">
+          <div id="viewerInner" class="viewer-inner">
+            <svg id="genomeSvg" aria-label="Genome viewer"></svg>
+          </div>
+        </div>
+        <div id="legend" class="legend"></div>
+      </section>
+
+      <section class="two-up">
+        <section class="panel results-panel">
+          <div class="section-header compact">
+            <div>
+              <h2>PAM candidates</h2>
+              <p class="muted">Click rows or markers to toggle selection.</p>
+            </div>
+            <input id="tableFilter" type="text" placeholder="Filter table..." class="table-filter" />
+          </div>
+          <div class="table-wrap">
+            <table id="resultsTable">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>PAM</th>
+                  <th>Strand</th>
+                  <th>Pos</th>
+                  <th>Spacer</th>
+                  <th>Len</th>
+                  <th>Feature</th>
+                  <th>Selected</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel selection-panel">
+          <div class="section-header compact">
+            <div>
+              <h2>Selected spacers</h2>
+              <p class="muted">Useful for collecting single guides or candidate pairs.</p>
+            </div>
+          </div>
+          <div id="pairSummary" class="pair-summary"></div>
+          <div id="selectedList" class="selected-list empty-state">No PAM sites selected yet.</div>
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>PAM Scout runs fully client-side on GitHub Pages. No uploaded sequence leaves the browser.</span>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
