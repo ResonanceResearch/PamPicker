@@ -210,6 +210,61 @@ svg text { font-family: var(--font); }
   .section-header { flex-direction: column; }
 }
 
+/* === CHANGED: stop PAM candidate rows from stretching to fill panel height === */
+#resultsTable,
+#resultsTable thead,
+#resultsTable tbody,
+#resultsTable tr,
+#resultsTable th,
+#resultsTable td {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+}
+
+/* === CHANGED: keep tbody using normal table layout, not stretched rows === */
+#resultsTable tbody {
+  display: table-row-group !important;
+}
+
+#resultsTable thead {
+  display: table-header-group !important;
+}
+
+#resultsTable tr {
+  display: table-row !important;
+}
+
+/* === CHANGED: make PAM rows compact and aligned to content === */
+#resultsTable th,
+#resultsTable td {
+  padding: 3px 8px !important;
+  line-height: 1.05 !important;
+  vertical-align: middle !important;
+  white-space: normal;
+}
+
+/* === CHANGED: compact badge appearance inside PAM table === */
+#resultsTable .badge {
+  padding: 2px 7px !important;
+  line-height: 1 !important;
+  font-size: 0.74rem !important;
+}
+
+/* === CHANGED: compact monospace sequence text inside PAM table === */
+#resultsTable .small-mono,
+#resultsTable .spacer-cell,
+#resultsTable .wrap-mono,
+#resultsTable .feature-cell {
+  line-height: 1 !important;
+  font-size: 0.78rem !important;
+}
+
+/* === CHANGED: ensure each row only takes the height it needs === */
+#resultsTable tbody tr {
+  vertical-align: middle;
+}
+
 
 #resultsTable th:nth-child(1), #resultsTable td:nth-child(1) { width: 60px; }
 #resultsTable th:nth-child(2), #resultsTable td:nth-child(2) { width: 120px; }
