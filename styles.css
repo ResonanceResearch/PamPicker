@@ -46,8 +46,8 @@ h1 { margin: 8px 0 12px; font-size: clamp(2rem, 4vw, 3.3rem); line-height: 1; }
 }
 
 .logo {
-  width: 56px;
-  height: 56px;
+  width: 112px;
+  height:112px;
   object-fit: contain;
 }
 
@@ -57,6 +57,7 @@ h1 { margin: 8px 0 12px; font-size: clamp(2rem, 4vw, 3.3rem); line-height: 1; }
   gap: 20px;
   padding-bottom: 20px;
 }
+
 .main-stack { display: grid; gap: 20px; }
 .two-up { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(360px, 0.9fr); gap: 20px; }
 
