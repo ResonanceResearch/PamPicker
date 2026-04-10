@@ -3,19 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PAM Picker</title>
+  <title>PAM Scout</title>
+
+  <!-- NEW: favicon -->
+  <link rel="icon" type="image/png" href="Pam_logo.png" />
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="hero">
-    <div>
-      <div class="eyebrow">GitHub Pages bioinformatics app</div>
-      <h1>PAM Scout</h1>
-      <p class="subtitle">
-        Upload annotated GenBank files, scan both strands for CRISPR-adjacent PAMs,
-        inspect gene context, and export spacer candidates for cloning or ordering.
-      </p>
+    <div class="hero-title">
+      <!-- NEW: logo -->
+      <img src="Pam_logo.png" alt="PAM Scout logo" class="logo" />
+  
+      <div>
+        <div class="eyebrow">GitHub Pages bioinformatics app</div>
+        <h1>PAM Scout</h1>
+        <p class="subtitle">
+          Upload annotated GenBank files, scan both strands for CRISPR-adjacent PAMs,
+          inspect gene context, and export spacer candidates for cloning or ordering.
+        </p>
+      </div>
     </div>
+  
     <div class="hero-actions">
       <label class="button primary upload-button">
         <input id="fileInput" type="file" accept=".gb,.gbk,.genbank,.txt" multiple hidden />
