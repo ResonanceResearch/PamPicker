@@ -132,7 +132,7 @@ input[type="range"] { width: 100%; }
 .legend-swatch { width: 14px; height: 14px; border-radius: 4px; }
 
 .table-wrap {
-  overflow: auto; max-height: 560px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.08);
+  overflow: auto; max-height: 200px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.08);
 }
 table { width: 100%; border-collapse: collapse; table-layout: fixed; min-width: 0; }
 thead th {
