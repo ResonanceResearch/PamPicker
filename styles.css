@@ -38,6 +38,19 @@ h1 { margin: 8px 0 12px; font-size: clamp(2rem, 4vw, 3.3rem); line-height: 1; }
 .subtitle { max-width: 820px; color: var(--muted); font-size: 1.02rem; line-height: 1.5; margin: 0; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
 
+/* === Added for PAM logo === */
+.hero-title {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+}
+
 .layout {
   display: grid;
   grid-template-columns: 360px minmax(0, 1fr);
