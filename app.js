@@ -420,9 +420,9 @@ function renderResultsTable() {
   el.resultsTableBody.innerHTML = rows.map(site => `
     <tr data-site-id="${site.id}" class="${state.selectedIds.has(site.id) ? 'selected-row' : ''}">
       <td>${site.index}</td>
-      <td>
-        <div class="badge ${site.patternKey === 'NNAGAAW' ? 'pattern1' : 'pattern2'}">${site.pamLabel}</div>
-        <div class="small-mono wrap-mono">${site.pamSeq5to3}</div>
+      <td class="small-mono wrap-mono">
+        <span class="badge ${site.patternKey === 'NNAGAAW' ? 'pattern1' : 'pattern2'}">${site.pamLabel}</span>
+        <span style="margin-left:6px;">${site.pamSeq5to3}</span>
       </td>
       <td><span class="badge ${site.strand === '+' ? 'plus' : 'minus'}">${site.strand}</span></td>
       <td>${site.pamStart}..${site.pamEnd}</td>
