@@ -197,6 +197,55 @@ svg text { font-family: var(--font); }
   .section-header { flex-direction: column; }
 }
 
+/* === CHANGED: force PAM candidates table rows to use content height only === */
+#resultsTable {
+  height: auto !important;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+#resultsTable thead,
+#resultsTable tbody {
+  height: auto !important;
+}
+
+#resultsTable tr {
+  height: auto !important;
+}
+
+#resultsTable th,
+#resultsTable td {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+  line-height: 1.05 !important;
+  vertical-align: middle !important;
+}
+
+/* === CHANGED: make PAM text blocks compact so they do not inflate row height === */
+#resultsTable .badge {
+  padding: 1px 7px !important;
+  line-height: 1 !important;
+  font-size: 0.74rem !important;
+}
+
+#resultsTable .small-mono,
+#resultsTable .wrap-mono,
+#resultsTable .spacer-cell,
+#resultsTable .feature-cell {
+  line-height: 1 !important;
+  font-size: 0.78rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* === CHANGED: prevent accidental vertical expansion from tbody content flow === */
+#resultsTable tbody td > div {
+  margin: 0 !important;
+}
+
 
 #resultsTable th:nth-child(1), #resultsTable td:nth-child(1) { width: 60px; }
 #resultsTable th:nth-child(2), #resultsTable td:nth-child(2) { width: 120px; }
